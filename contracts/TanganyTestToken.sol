@@ -5,7 +5,7 @@ import "openzeppelin-solidity/contracts/token/ERC20/ERC20Detailed.sol";
 
 /**
  * @title TanganyTestToken
- * @dev Very simple ERC20 Token example, where all 10000 tokens are pre-assigned to the creator.
+ * @dev Simple ERC20 Token example yielding 10000 tokens pre-assigned to its creator.
  */
 contract TanganyTestToken is ERC20, ERC20Detailed {
     // modify token name
