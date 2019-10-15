@@ -2,9 +2,9 @@
   <a href="https://tangany.com">  
     <img src="https://raw.githubusercontent.com/Tangany/cloud-wallet/master/docs/logo.svg?sanitize=true"  alt="Tangany" width="200" />  
   </a>  
-  <h1>ERC20 Truffle Example</h1>      
+  <h1>Truffle blueprint</h1>      
   <p>  
-    <strong>Easy example for deployment of openzeppelin based ERC20 tokens with truffle</strong>  
+    <strong>Easy boilerplate for deploying openzeppelin based smart-tokens using the truffle suite</strong>  
   </p>  
   <br/>  
 </div>  
