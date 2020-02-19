@@ -36,8 +36,17 @@ if (process.env.PRIVATE_NETWORK_URL) {
 if (process.env.PRIVATE_NETWORK_ID) {
     console.log("Using env var PRIVATE_NETWORK_ID", process.env.PRIVATE_NETWORK_ID);
 }
+if (process.env.ETHERSCAN_APIKEY) {
+    console.log("Using env var process.env.ETHERSCAN_APIKEY", abbrv(process.env.ETHERSCAN_APIKEY));
+}
 
 module.exports = {
+    plugins: [
+        'truffle-plugin-verify'
+    ],
+    api_keys: {
+        etherscan: process.env.ETHERSCAN_APIKEY
+    },
     /**
      * Networks define how you connect to your ethereum client and let you set the
      * defaults web3 uses to send transactions. If you don't specify one truffle

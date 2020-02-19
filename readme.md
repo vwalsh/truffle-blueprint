@@ -145,12 +145,11 @@ Required environment variables
 * PRIVATE_KEY
 * INFURA_KEY
 
-Sign up for a free api key at https://infura.io/dashboard to deploy to public networks. Make sure the private key on ropsten has enough ether to fund the deployment transaction. 
-Get free ether from a ropsten ethereum faucet https://faucet.ropsten.be/
+## Verification
+In order to verify your smart contract on etherscan.io execute the verification script immediately after the contract is successfully deployed and pass the contract name as the argument (e.g. `npm run verify:ropsten -- TanganyERC20`). 
+This action supports smart contracts deployed on public Ethereum networks and does require the `ETHERSCAN_APIKEY` environment variable to execute. The API key that can be generated for free at https://etherscan.io/myapikey. 
 
-```
-npm run build && npm run deploy:ropsten
-```
+![](./docs/etherscan-verified.png)
 
 ***
 <div align="center">
