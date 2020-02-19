@@ -21,9 +21,7 @@ Make sure to provide the 64 character long hexa-decimal `PRIVATE_KEY`. The assoc
 
 # Deployment
 
-Sign up for a free api key at https://infura.io/dashboard to deploy to public networks. Make sure the private key on ropsten has enough ether to fund the deployment transaction. 
-
-Get free ether from a ropsten ethereum faucet https://faucet.ropsten.be/
+Make sure the private key has enough ether on the required network to fund the deployment transactions. 
 
 Deploy the smart contract to the desired environment with the provided commands (e.g. `npm run deploy:ropsten`). The address of the deployed contract will be printed to the console output:
 
@@ -128,7 +126,7 @@ Required environment variables
 npm run build && npm run deploy:development
 ```
 
-## Private network 
+## Private network
 Required environment variables
 * PRIVATE_KEY
 * PRIVATE_NETWORK_URL
@@ -140,16 +138,30 @@ Also make sure to verify the [truffle settings](./truffle-config.js) for `privat
 npm run build && npm run deploy:private
 ```
 
-## Ropsten public testnet 
+## Public network
 Required environment variables
 * PRIVATE_KEY
 * INFURA_KEY
+
+Sign up for a free api key at https://infura.io/dashboard to deploy to public networks. 
+
+```
+npm run build && npm run deploy:ropsten
+```
+
+```
+npm run build && npm run deploy:mainnet
+```
 
 ## Verification
 In order to verify your smart contract on etherscan.io execute the verification script immediately after the contract is successfully deployed and pass the contract name as the argument (e.g. `npm run verify:ropsten -- TanganyERC20`). 
 This action supports smart contracts deployed on public Ethereum networks and does require the `ETHERSCAN_APIKEY` environment variable to execute. The API key that can be generated for free at https://etherscan.io/myapikey. 
 
 ![](./docs/etherscan-verified.png)
+
+
+# Disclaimer
+Deploy at your own risk! This software is provided "as-is" without warranty of any kind. Tangany does not take any responsibility for loss of funds caused through use of this repository.
 
 ***
 <div align="center">
