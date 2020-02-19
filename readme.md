@@ -10,8 +10,8 @@
 </div>  
 
 # Development
-Modify the main token contract [./contracts/TanganyTestToken.sol](./contracts/TanganyTestToken.sol) to deploy a ERC20 token or replace it with a custom contract. 
-Make sure the contract file name is referenced correctly in [./migrations/2_deploy_contract.js](./migrations/2_deploy_contract.js)
+
+Modify the a token blueprint (e.g. [./contracts/TanganyERC20.sol](contracts/TanganyERC20.sol)) to deploy the token.  Make sure the contract file name is referenced correctly in [./migrations/2_deploy_contract.js](./migrations/2_deploy_contract.js)
 
 ## Environment Variables
 
@@ -21,8 +21,11 @@ Make sure to provide the 64 character long hexa-decimal `PRIVATE_KEY`. The assoc
 
 # Deployment
 
-Deploy the smart contract to the desired environment with the provided commands. The address of the deployed contract will be
-printed to the console output:
+Sign up for a free api key at https://infura.io/dashboard to deploy to public networks. Make sure the private key on ropsten has enough ether to fund the deployment transaction. 
+
+Get free ether from a ropsten ethereum faucet https://faucet.ropsten.be/
+
+Deploy the smart contract to the desired environment with the provided commands (e.g. `npm run deploy:ropsten`). The address of the deployed contract will be printed to the console output:
 
 ````
 
@@ -116,7 +119,6 @@ Summary
 ````
 
 In this example the smart contract was deployed to the address `0x08D65FFaAA99a54a98AED475f5c9d659eF60CA7b` on the Ganache Development network. The address `0xc460f0A72A5860107F2606321401f07549Bb4ddA` gained ownership to the smart contract and received 10000 tokens.
-
 
 ## Development network / Ganache 
 Required environment variables

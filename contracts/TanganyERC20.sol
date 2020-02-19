@@ -1,17 +1,17 @@
-pragma solidity ^0.5.0;
+pragma solidity 0.5.2;
 
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20Detailed.sol";
 
 /**
- * @title TanganyTestToken
+ * @title TanganyERC20
  * @dev Simple ERC20 Token example yielding 10000 tokens pre-assigned to its creator.
  */
-contract TanganyTestToken is ERC20, ERC20Detailed {
+contract TanganyERC20 is ERC20, ERC20Detailed {
     // modify token name
-    string public constant NAME = "ERC20ExampleToken";
+    string public constant NAME = "TanganyERC20Token";
     // modify token symbol
-    string public constant SYMBOL = "EET";
+    string public constant SYMBOL = "TERC20";
     // modify token decimals
     uint8 public constant DECIMALS = 18;
     // modify initial token supply

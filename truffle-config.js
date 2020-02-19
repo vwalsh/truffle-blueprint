@@ -20,14 +20,15 @@
 require("dotenv").config();
 
 const HDWalletProvider = require("truffle-hdwallet-provider");
+const abbrv = (str) => `${str.substr(0, 4)}...`;
 
 if (!process.env.PRIVATE_KEY) {
     throw new Error("define PRIVATE_KEY in .env first!");
 } else {
-    console.log("Using env var PRIVATE_KEY", `${process.env.PRIVATE_KEY.substr(0, 4)}...`);
+    console.log("Using env var PRIVATE_KEY", abbrv(process.env.PRIVATE_KEY));
 }
 if (process.env.INFURA_APIKEY) {
-    console.log("Using env var INFURA_APIKEY", `${process.env.INFURA_APIKEY.substr(0, 4)}...`);
+    console.log("Using env var INFURA_APIKEY", abbrv(process.env.INFURA_APIKEY));
 }
 if (process.env.PRIVATE_NETWORK_URL) {
     console.log("Using env var PRIVATE_NETWORK", process.env.PRIVATE_NETWORK_URL);
@@ -58,7 +59,7 @@ module.exports = {
             gas: 6700000,
             network_id: "5777",
         },
-        
+
         // Useful for private networks
         // private: {
         // port: 8777,             // Custom port
@@ -75,7 +76,7 @@ module.exports = {
             gasPrice: 0,
             network_id: process.env.PRIVATE_NETWORK_ID,
         },
-        
+
         // Useful for deploying to a public network.
         ropsten: {
             provider: () => new HDWalletProvider(process.env.PRIVATE_KEY, `https://ropsten.infura.io/v3/${process.env.INFURA_APIKEY}`),
