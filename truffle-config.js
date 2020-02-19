@@ -19,7 +19,7 @@
  */
 require("dotenv").config();
 
-const HDWalletProvider = require("truffle-hdwallet-provider-privkey");
+const HDWalletProvider = require("truffle-hdwallet-provider");
 
 if (!process.env.PRIVATE_KEY) {
     throw new Error("define PRIVATE_KEY in .env first!");
@@ -70,7 +70,7 @@ module.exports = {
         // production: true    // Treats this network as if it was a public net. (default: false)
         // },
         private: {
-            provider: () => new HDWalletProvider([process.env.PRIVATE_KEY], process.env.PRIVATE_NETWORK_URL),
+            provider: () => new HDWalletProvider(process.env.PRIVATE_KEY, process.env.PRIVATE_NETWORK_URL),
             gas: 0, // example settings for "ethereum-free" networks.
             gasPrice: 0,
             network_id: process.env.PRIVATE_NETWORK_ID,
@@ -78,7 +78,7 @@ module.exports = {
         
         // Useful for deploying to a public network.
         ropsten: {
-            provider: () => new HDWalletProvider([process.env.PRIVATE_KEY], `https://ropsten.infura.io/v3/${process.env.INFURA_APIKEY}`),
+            provider: () => new HDWalletProvider(process.env.PRIVATE_KEY, `https://ropsten.infura.io/v3/${process.env.INFURA_APIKEY}`),
             network_id: 3,       // Ropsten's id
             // gas: 5500000,        // Ropsten has a lower block limit than mainnet
             // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
