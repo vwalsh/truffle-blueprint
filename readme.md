@@ -11,13 +11,13 @@
 
 # Development
 
-Modify the a token blueprint (e.g. [./contracts/TanganyERC20.sol](contracts/TanganyERC20.sol)) to deploy the token.  Make sure the contract file name is referenced correctly in [./migrations/2_deploy_contract.js](./migrations/2_deploy_contract.js)
+Modify the token blueprint (e.g. [./contracts/TanganyERC20.sol](contracts/TanganyERC20.sol)) to deploy the token.  Make sure the contract file name is referenced correctly in [./migrations/2_deploy_contract.js](./migrations/2_deploy_contract.js)
 
 ## Environment Variables
 
 Each deployment environment has a different set of mandatory environment variables. Add the secrets required for the deployment environment to [.env](./.env)
 
-Make sure to provide the 64 character long hexa-decimal `PRIVATE_KEY`. The associated address will inherit the tokens created by the contract deployment.
+Make sure to provide the `PRIVATE_KEY`. Ether by setting a mnemonic (the twelve word phrase), or a 64 character long hexa-decimal string. The associated address will inherit the tokens created by the contract deployment.
 
 # Deployment
 
