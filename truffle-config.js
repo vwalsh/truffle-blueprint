@@ -6,19 +6,20 @@
  *
  * More information about configuration can be found at:
  *
- * truffleframework.com/docs/advanced/configuration
+ * trufflesuite.com/docs/advanced/configuration
  *
- * To deploy via Infura you'll need a wallet provider (like truffle-hdwallet-provider)
- * to sign your transactions before they're sent to a remote public node. Infura API
- * keys are available for free at: infura.io/register
+ * To deploy via Infura you'll need a wallet provider (like @truffle/hdwallet-provider)
+ * to sign your transactions before they're sent to a remote public node. Infura accounts
+ * are available for free at: infura.io/register.
  *
  * You'll also need a mnemonic - the twelve word phrase the wallet uses to generate
  * public/private key pairs. If you're publishing your code to GitHub make sure you load this
  * phrase from a file you've .gitignored so it doesn't accidentally become public.
  *
  */
+
 require("dotenv").config();
-const HDWalletProvider = require("truffle-hdwallet-provider");
+const HDWalletProvider = require("@truffle/hdwallet-provider");
 const abbrv = (str) => `${str.substr(0, 4)}...`;
 
 if (!process.env.PRIVATE_KEY) {
@@ -63,7 +64,7 @@ module.exports = {
         // options below to some value.
         development: {
             host: "localhost",
-            port: 8545,
+            port: 9545,
             gas: 6700000,
             network_id: "5777",
         },
@@ -104,17 +105,21 @@ module.exports = {
         }
     },
     // Set default mocha options here, use special reporters etc.
-    mocha: {},
+    mocha: {
+        // timeout: 100000
+        useColors: true
+    },
     compilers: {
         solc: {
-            version: "0.5.2",
+            version: "0.6.12",
             docker: false,
-            settings: {
+            settings: { // See the solidity docs for advice about optimization and evmVersion
                 optimizer: {
                     enabled: true,
                     runs: 200
                 },
             }
+            //  evmVersion: "byzantium"
         }
     }
 };
