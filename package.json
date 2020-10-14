@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "npm run build",
+    "start:develop": "truffle develop",
     "build": "truffle compile",
     "deploy:mainnet": "truffle migrate --network mainnet",
     "deploy:ropsten": "truffle migrate --network ropsten",
@@ -17,7 +18,8 @@
     "prebuild": "rimraf ./build/contracts/*",
     "postinstall": "cpr .env.example .env",
     "verify:ropsten": "truffle run verify --network ropsten --debug",
-    "verify:mainnet": "truffle run verify --network mainnet --debug"
+    "verify:mainnet": "truffle run verify --network mainnet --debug",
+    "test": "truffle test"
   },
   "keywords": [],
   "private": true,
