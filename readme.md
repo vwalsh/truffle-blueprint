@@ -10,6 +10,7 @@
 </div>  
 
 # Development
+Install NodeJS and NPM. Windows Users experience fewer failures during installation when NodeJS LTS version 10 is used. Run `npm install`.
 
 Modify the token blueprint (e.g. [./contracts/TanganyERC20.sol](contracts/TanganyERC20.sol)) to deploy the token.  Make sure the contract file name is referenced correctly in [./migrations/2_deploy_contract.js](./migrations/2_deploy_contract.js)
 
@@ -20,6 +21,15 @@ Each deployment environment has a different set of mandatory environment variabl
 Make sure to provide the `PRIVATE_KEY`. Ether by setting a mnemonic (the twelve word phrase), or a 64 character long hexa-decimal string. The associated address will inherit the tokens created by the contract deployment.
 
 # Deployment
+
+## Current Contract Addresses
+
+- TanganyTestToken [0xC32AE45504Ee9482db99CfA21066A59E877Bc0e6](https://ropsten.etherscan.io/address/0xc32ae45504ee9482db99cfa21066a59e877bc0e6)
+- Event Emitter [0xaE3093b6EA3E9dc5a09690A55634504A40E567D3](https://ropsten.etherscan.io/address/0xae3093b6ea3e9dc5a09690a55634504a40e567d3)
+- TanganyLoveToken (faucet) [0x62f49D4A051a22Cd5573b1197FD3E96F1026346D](https://ropsten.etherscan.io/address/0x62f49D4A051a22Cd5573b1197FD3E96F1026346D)
+- Test Contract [0x61B6a7b2b031Ca7053c3fD28F255AC4B17ecd5a4](https://ropsten.etherscan.io/address/0x61b6a7b2b031ca7053c3fd28f255ac4b17ecd5a4)
+
+## Deploy
 
 Make sure the private key has enough ether on the required network to fund the deployment transactions. 
 
