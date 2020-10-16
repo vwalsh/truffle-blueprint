@@ -1,3 +1,6 @@
+const assert = require("assert");
+const web3 = require("web3");
+const {it} = require("mocha");
 const Emitter = artifacts.require("Emitter");
 
 contract("Emitter", accounts => {
