@@ -1,76 +1,99 @@
+const assert = require("assert");
+const {it} = require("mocha");
 const Emitter = artifacts.require("Emitter");
 
 contract("Emitter", accounts => {
 
-    it("getCaller", async () => {
-        const instance = await Emitter.deployed();
-        const randomAddress = web3.utils.toChecksumAddress(web3.utils.randomHex(20));
-        const callerAddress = await instance.getCaller.call({
-            from: randomAddress
+    describe("emitInt", function () {
+        it("should emit int", async () => {
+            const instance = await Emitter.deployed();
+            const tx = await instance.emitInt(-123);
+
+            assert.ok(tx.logs.length = 1);
+            assert.strictEqual(new web3.utils.BN(tx.logs[0].args.value).toNumber(), -123);
         });
 
-        assert.strictEqual(web3.utils.toChecksumAddress(callerAddress), randomAddress);
+        it("should emit int array", async () => {
+            const instance = await Emitter.deployed();
+            const tx = await instance.emitIntArray([-123, 0, "1", -1e5]);
+
+            assert.ok(tx.logs.length = 1);
+            assert.deepStrictEqual(tx.logs[0].args.value.map(int => new web3.utils.BN(int).toString()), ["-123", "0", "1", "-100000"]);
+        });
     });
 
-    it("emitInt", async () => {
-        const instance = await Emitter.deployed();
-        const tx = await instance.emitInt();
+    describe("emitUint", function () {
+        it("should emit uint", async () => {
+            const instance = await Emitter.deployed();
+            const tx = await instance.emitUint(123);
 
-        assert.ok(tx.logs.length = 1);
-        assert.ok(web3.utils.isBN(tx.logs[0].args.value));
-        assert.strictEqual(web3.utils.BN(tx.logs[0].args.value).toNumber(), -123);
+            assert.ok(tx.logs.length = 1);
+            assert.strictEqual(new web3.utils.BN(tx.logs[0].args.value).toNumber(), 123);
+        });
+
+        it("should emit fixed uint array", async () => {
+            const instance = await Emitter.deployed();
+            const tx = await instance.emitUintArrayFixed([0, "1", 1e5]);
+
+            assert.ok(tx.logs.length = 1);
+            assert.deepStrictEqual(tx.logs[0].args.value.map(uint => new web3.utils.BN(uint).toString()), ["0", "1", "100000"]);
+        });
+
     });
 
-    it("emitUint", async () => {
-        const instance = await Emitter.deployed();
-        const tx = await instance.emitUint();
+    describe("emitBool", function () {
+        it("should emit bool", async () => {
+            const instance = await Emitter.deployed();
+            const tx = await instance.emitBool(false);
 
-        assert.ok(tx.logs.length = 1);
-        assert.ok(web3.utils.isBN(tx.logs[0].args.value));
-        assert.strictEqual(web3.utils.BN(tx.logs[0].args.value).toNumber(), 123);
+            assert.ok(tx.logs.length = 1);
+            assert.strictEqual(tx.logs[0].args.value, false);
+        });
+
+        it("should emit bool fixed array", async () => {
+            const instance = await Emitter.deployed();
+            const tx = await instance.emitBoolArrayFixed([true, false]);
+
+            assert.ok(tx.logs.length = 1);
+            assert.strictEqual(tx.logs[0].args.value[0], true);
+            assert.strictEqual(tx.logs[0].args.value[1], false);
+        });
     });
 
-    it("emitBool", async () => {
-        const instance = await Emitter.deployed();
-        const tx = await instance.emitBool();
+    describe("emitAddress", function () {
+        it("should emit address", async () => {
+            const instance = await Emitter.deployed();
+            const tx = await instance.emitAddress(instance.address);
 
-        assert.ok(tx.logs.length = 1);
-        assert.strictEqual(tx.logs[0].args.value, false);
+            assert.ok(tx.logs.length = 1);
+            assert.strictEqual(web3.utils.toChecksumAddress(tx.logs[0].args.value), web3.utils.toChecksumAddress(instance.address));
+        });
+
+        it("should emit address array", async () => {
+            const instance = await Emitter.deployed();
+            const tx = await instance.emitAddressArray([instance.address]);
+
+            assert.ok(tx.logs.length = 1);
+            assert.strictEqual(web3.utils.toChecksumAddress(tx.logs[0].args.value[0]), web3.utils.toChecksumAddress(instance.address));
+        });
     });
 
-    it("emitAddress", async () => {
-        const instance = await Emitter.deployed();
-        const tx = await instance.emitAddress();
+    describe("emitString", function () {
+        it("should emit string", async () => {
+            const instance = await Emitter.deployed();
+            const tx = await instance.emitString("123");
 
-        assert.ok(tx.logs.length = 1);
-        assert.strictEqual(web3.utils.toChecksumAddress(tx.logs[0].args.value), web3.utils.toChecksumAddress(tx.receipt.from));
-    });
+            assert.ok(tx.logs.length = 1);
+            assert.strictEqual(tx.logs[0].args.value, "123");
+        });
 
-    it("emitString", async () => {
-        const instance = await Emitter.deployed();
-        const tx = await instance.emitString();
+        it("should emit string array", async () => {
+            const instance = await Emitter.deployed();
+            const tx = await instance.emitStringArray(["Hello", "🖐"]);
 
-        assert.ok(tx.logs.length = 1);
-        assert.strictEqual(tx.logs[0].args.value, "123");
-    });
-
-    it("emitAddressArrayDynamic", async () => {
-        const instance = await Emitter.deployed();
-        const tx = await instance.emitAddressArrayDynamic();
-
-        assert.ok(tx.logs.length = 1);
-        assert.strictEqual(tx.logs[0].args.value.length, 2);
-        assert.strictEqual(web3.utils.toChecksumAddress(tx.logs[0].args.value[0]), web3.utils.toChecksumAddress(tx.receipt.to));
-        assert.strictEqual(web3.utils.toChecksumAddress(tx.logs[0].args.value[1]), web3.utils.toChecksumAddress(tx.receipt.from));
-    });
-
-    it("emitBoolArrayFixed", async () => {
-        const instance = await Emitter.deployed();
-        const tx = await instance.emitBoolArrayFixed();
-
-        assert.ok(tx.logs.length = 1);
-        assert.strictEqual(tx.logs[0].args.value.length, 2);
-        assert.strictEqual(tx.logs[0].args.value[0], true);
-        assert.strictEqual(tx.logs[0].args.value[1], false);
+            assert.ok(tx.logs.length = 1);
+            assert.strictEqual(tx.logs[0].args.value[0], "Hello");
+            assert.strictEqual(tx.logs[0].args.value[1], "🖐");
+        });
     });
 });

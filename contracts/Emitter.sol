@@ -1,50 +1,60 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.5.16 <0.7.0;
+pragma solidity ^0.6.0;
+pragma experimental ABIEncoderV2;
 
 contract Emitter {
-    event _emitInt(int value);
-    event _emitUint(uint value);
-    event _emitBool(bool value);
-    event _emitAddress(address value);
-    event _emitString(string value);
-    event _emitAddressArrayDynamic(address[] value);
-    event _emitBoolArrayFixed(bool[2] value);
+    event Int(int256 value);
+    event IntArray(int256[] value);
+    event Uint(uint256 value);
+    event UintArrayFixed(uint256[3] value);
+    event Bool(bool value);
+    event BoolArrayFixed(bool[2] value);
+    event Address(address value);
+    event AddressArray(address[] value);
+    event String(string value);
+    event StringArray(string[] value);
+    event Mixed(int256 _int, uint256 _uint, bool _bool, string _string, address _address);
+    event MixedArray(int256[] _int, uint256[] _uint, bool[] _bool, string[] _string, address[] _address);
 
-    function getCaller() public view returns (address) {
-        return (msg.sender);
+    function emitInt(int256 value) public {
+        emit Int(value);
+    }
+    function emitIntArray(int256[] calldata value) public {
+        emit IntArray(value);
     }
 
-    function emitInt() public {
-        emit _emitInt(int(- 123));
+    function emitUint(uint256 value) public {
+        emit Uint(value);
+    }
+    function emitUintArrayFixed(uint256[3] calldata value) public {
+        emit UintArrayFixed(value);
     }
 
-    function emitUint() public {
-        emit _emitUint(uint(123));
+    function emitBool(bool value) public {
+        emit Bool(value);
+    }
+    function emitBoolArrayFixed(bool[2] calldata value) public {
+        emit BoolArrayFixed(value);
     }
 
-    function emitBool() public {
-        emit _emitBool(bool(false));
+    function emitAddress(address value) public {
+        emit Address(value);
+    }
+    function emitAddressArray(address[] calldata value) public {
+        emit AddressArray(value);
     }
 
-    function emitAddress() public {
-        emit _emitAddress(address(msg.sender));
+    function emitString(string calldata value) public {
+        emit String(value);
+    }
+    function emitStringArray(string[] calldata value) public {
+        emit StringArray(value);
     }
 
-    function emitString() public {
-        emit _emitString(string("123"));
+    function emitMixed(int256 _int, uint256 _uint, bool _bool, string calldata _string, address _address) public {
+        emit Mixed(_int, _uint, _bool, _string, _address);
     }
-
-    function emitAddressArrayDynamic() public {
-        address[] memory value = new address[](2);
-        value[0] = address(this);
-        value[1] = address(msg.sender);
-
-        emit _emitAddressArrayDynamic(value);
-    }
-
-    function emitBoolArrayFixed() public {
-        bool[2] memory value = [bool(true), bool(false)];
-
-        emit _emitBoolArrayFixed(value);
+    function emitMixedArray(int256[] calldata _int, uint256[] calldata _uint, bool[] calldata _bool, string[] calldata _string, address[] calldata _address) public {
+        emit MixedArray(_int, _uint, _bool, _string, _address);
     }
 }

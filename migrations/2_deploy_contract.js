@@ -2,7 +2,8 @@ const TanganyERC20 = artifacts.require("./TanganyERC20.sol");
 const TanganyERC721 = artifacts.require("./TanganyERC721.sol");
 const Emitter = artifacts.require("Emitter");
 const TanganyLoveToken = artifacts.require("TanganyLoveToken");
-const TestContract = artifacts.require("TanganyLoveToken");
+const Payments = artifacts.require("Payments");
+const Caller = artifacts.require("Caller");
 
 module.exports = function (deployer) {
     /**
@@ -10,7 +11,8 @@ module.exports = function (deployer) {
      */
     // deployer.deploy(TanganyERC20);
     // deployer.deploy(TanganyERC721);
-    // deployer.deploy(Emitter);
     // deployer.deploy(TanganyLoveToken);
-    // deployer.deploy(TestContract);
+    // deployer.deploy(Payments);
+    // deployer.deploy(Emitter);
+    // deployer.deploy(Caller);
 };
