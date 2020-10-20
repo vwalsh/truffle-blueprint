@@ -17,9 +17,9 @@
     "list:compilers": "truffle compile --list",
     "prebuild": "rimraf ./build/contracts/*",
     "postinstall": "cpr .env.example .env",
-    "verify:ropsten": "truffle run verify --network ropsten --debug",
-    "verify:mainnet": "truffle run verify --network mainnet --debug",
-    "test": "truffle test"
+    "verify:ropsten": "truffle run verify --network ropsten",
+    "verify:mainnet": "truffle run verify --network mainnet",
+    "test": "truffle test ./test/payments.js --show-events"
   },
   "keywords": [],
   "private": true,

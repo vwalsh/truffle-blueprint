@@ -1,5 +1,4 @@
 const assert = require("assert");
-const web3 = require("web3");
 const {describe, it} = require("mocha");
 const Caller = artifacts.require("Caller");
 
