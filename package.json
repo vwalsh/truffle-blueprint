@@ -27,11 +27,11 @@
   "license": "ISC",
   "dependencies": {
     "@openzeppelin/contracts": "^3.2.0",
-    "@truffle/hdwallet-provider": "^1.1.0",
+    "@truffle/hdwallet-provider": "^1.2.0",
     "cpr": "^3.0.1",
     "dotenv": "^8.2.0",
     "rimraf": "^3.0.2",
-    "truffle": "^5.1.48",
-    "truffle-plugin-verify": "^0.4.0"
+    "truffle": "^5.1.55",
+    "truffle-plugin-verify": "^0.5.2"
   }
 }

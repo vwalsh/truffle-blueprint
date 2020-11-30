@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
  * @title TanganyERC721
- * @dev Simple ERC721 Token example yielding a non-fungible token pre-assigned to its creator.
+ * @dev Simple ERC721 Token example yields a non-fungible token pre-assigned to its creator.
  */
 contract TanganyERC721 is ERC721, Ownable {
     // modify token name

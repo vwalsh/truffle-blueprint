@@ -44,8 +44,8 @@ module.exports = {
     plugins: [
         'truffle-plugin-verify'
     ],
-    api_keys: {
-        etherscan: process.env.ETHERSCAN_APIKEY
+    etherscan: {
+        apiKey: process.env.ETHERSCAN_APIKEY
     },
     /**
      * Networks define how you connect to your ethereum client and let you set the
@@ -80,15 +80,25 @@ module.exports = {
         // production: true    // Treats this network as if it was a public net. (default: false)
         // },
         private: {
-            provider: () => new HDWalletProvider(process.env.PRIVATE_KEY, process.env.PRIVATE_NETWORK_URL),
-            gas: 0, // example settings for "ethereum-free" networks.
+            provider: () => new HDWalletProvider({
+                privateKeys: [process.env.PRIVATE_KEY],
+                providerOrUrl: process.env.PRIVATE_NETWORK_URL
+            }),
+            // example setting for "ethereum-free" networks:
+            gas: 0,
             gasPrice: 0,
-            network_id: process.env.PRIVATE_NETWORK_ID,
+            network_id: "*",
+            // example setting for quorum deployment:
+            port: 22000, // replace with quorum node port you wish to connect to
+            type: "quorum" // example setting for quorum deployment
         },
 
         // Useful for deploying to a public network.
         ropsten: {
-            provider: () => new HDWalletProvider(process.env.PRIVATE_KEY, `https://ropsten.infura.io/v3/${process.env.INFURA_APIKEY}`),
+            provider: () => new HDWalletProvider({
+                privateKeys: [process.env.PRIVATE_KEY],
+                providerOrUrl: `https://ropsten.infura.io/v3/${process.env.INFURA_APIKEY}`
+            }),
             network_id: 3,          // Ropsten's id
             // gas: 5500000,        // Ropsten has a lower block limit than mainnet
             // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
@@ -97,7 +107,10 @@ module.exports = {
         },
 
         mainnet: {
-            provider: () => new HDWalletProvider(process.env.PRIVATE_KEY, `https://mainnet.infura.io/v3/${process.env.INFURA_APIKEY}`),
+            provider: () => new HDWalletProvider({
+                privateKeys: [process.env.PRIVATE_KEY],
+                providerOrUrl: `https://mainnet.infura.io/v3/${process.env.INFURA_APIKEY}`
+            }),
             network_id: 1,
             gas: 6500000,          // Default gas to send per transaction
             gasPrice: 10000000000,  // 10 gwei
